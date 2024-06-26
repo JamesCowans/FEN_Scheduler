@@ -28,45 +28,77 @@
 def GM_Volumes():
     gm_vol = int(input("Please enter the weekly GM Forcast: \n"))
     return (gm_vol)
+total_volumes_gm = GM_Volumes()
+
+
 
 
 # Divides the Weekly GM forcast by number of days worked - set as 5 to start
-def GM_Daily(gm_vol):
-    gm_day = (gm_vol) //5
-    print(gm_day)
+def GM_Daily():
+    gm_day = (total_volumes_gm) /5
+    return (gm_day)
+daily_volumes_gm = GM_Daily()
+# print(daily_volumes_gm)
 
-# Maximum units per hour that can be completed by 1 worked and divides the total work by number of hours available to see how many worked needed in total each working 7.5 hours
-# GM_Decant_Max_Units_Colleagues():
+
+
+
+# Maximum units per hour that can be completed by 1 worked and divides the total work by number of hours available to see how many worked needed in total each working 7.5 hours - 782 per shift?
+def GM_Decant_Max_Units_Colleagues():
+    gm_max = (daily_volumes_gm) //782 # This is the decant KPI per shift, by dividing the overall amount of work by the maximum achievable we see the total colleagues required
+    return (gm_max)
+max_gm_vol = GM_Decant_Max_Units_Colleagues() # This is the maximum number of colleagues required to complete decant work in a day
+
+
+
 
 # Maximum units per hour that can be completed by 1 worked and divides the total work by number of hours available to see how many worked needed in total each working 7.5 hours
 # GM_Prcss_Max_Units_Colleagues():
 
 # Maximum units per hour that can be completed by 1 worked and divides the total work by number of hours available to see how many worked needed in total each working 7.5 hours
-# GM_Putaway_Max_Units_Colleagues():
+def GM_Putaway_Max_Units_Colleagues():
+    putaway_work = (daily_volumes_gm) * 0.30 # percentage of work that is likely to be putaway
+    return(putaway_work)
+total_putaway_work = GM_Putaway_Max_Units_Colleagues()
+# print(total_putaway_work)
+    
 
 
 
 
 
 
-# Takes in the Weekly GM units forcast
-# Beauty_Volumes():
+# Takes in the Weekly HB units forcast
+def HB_Volumes():
+    hb_vol = int(input("Please enter the weekly Beauty Forcast: \n"))
+    return (hb_vol)
+total_volumes_hb = HB_Volumes()
 
-# Divides the Weekly GM forcast by number of days worked - set as 5 to start
-# Beauty_Daily():
+# Divides the Weekly HB forcast by number of days worked - set as 5 to start
+def HB_Daily():
+    hb_day = (total_volumes_hb) /5
+    return (hb_day)
+daily_volumes_hb = HB_Daily()
+# print(daily_volumes_hb)
+
 # No decant function required as this follows a xdock process, in and straight out or putaway
 
 # Maximum units per hour that can be completed by 1 worked and divides the total work by number of hours available to see how many worked needed in total each working 7.5 hours
-# GM_Prcss_Max_Units_Colleagues():
+def HB_Prcss_Max_Units_Colleagues():
+    units_per_hb_colleague = (daily_volumes_hb) / 7.5 # This is the units per colleague per hour 384 per hour
+    max_hb_colleagues = (units_per_hb_colleague) / 384 # Come back to this, the calculation is incorrect
+    return(max_hb_colleagues)
+hb_col_total =HB_Prcss_Max_Units_Colleagues()
+print(hb_col_total)
 
 # Maximum units per hour that can be completed by 1 worked and divides the total work by number of hours available to see how many worked needed in total each working 7.5 hours
-# GM_Putaway_Max_Units_Colleagues():
+# HB_Putaway_Max_Units_Colleagues():
 
 
-def Main():
+# def Main():
     
-    GM_Volumes()
-    GM_Daily()
+#     GM_Volumes()
+#     GM_Daily()
     
-Main()
+# Main()
     
