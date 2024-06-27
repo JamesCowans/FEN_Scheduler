@@ -50,7 +50,7 @@ def GM_Decant_Max_Units_Colleagues():
     gm_max = (daily_volumes_gm) //782 # This is the decant KPI per shift, by dividing the overall amount of work by the maximum achievable we see the total colleagues required
     return (gm_max)
 max_gm_vol = GM_Decant_Max_Units_Colleagues() # This is the maximum number of colleagues required to complete decant work in a day
-print(max_gm_vol)
+# print(max_gm_vol)
 
 
 
@@ -63,13 +63,24 @@ print(max_gm_vol)
 def GM_Putaway_Max_Units_Colleagues():
     putaway_work = (daily_volumes_gm) * 0.30 # percentage of work that is likely to be putaway
     return(putaway_work)
-total_putaway_work = GM_Putaway_Max_Units_Colleagues()
-# print(total_putaway_work)
+total_putaway_work_gm = GM_Putaway_Max_Units_Colleagues()
+# print(total_putaway_work_gm)
+
+
+
+def GM_Putaway_Required_Colleagues():
+    putaway_required = (total_putaway_work_gm)/188 # 188 per hour kpi
+    putaway_colleagues_required_gm = (putaway_required) // 7.5
+    if putaway_colleagues_required_gm ==0:
+        putaway_colleagues_required_gm = putaway_colleagues_required_gm +1
+    return(int(putaway_colleagues_required_gm))
+total_putaway_colleagues_gm = GM_Putaway_Required_Colleagues()
+print(total_putaway_colleagues_gm)
     
 
 
 
-
+44
 
 
 # Takes in the Weekly HB units forcast
@@ -98,10 +109,10 @@ def HB_Prcss_Max_Units_Colleagues():
     if max_hb_colleagues == 0:
         
        max_hb_colleagues = max_hb_colleagues +1 # This sets minimum staffing levels to one if there is not enough work to carry out
-
+    
          
-    return(max_hb_colleagues) #if this is then divided by 7.5 (max shift length) this will then give th enumber of colleagues needed 
-hb_col_total =HB_Prcss_Max_Units_Colleagues()
+    return(int(max_hb_colleagues)) #if this is then divided by 7.5 (max shift length) this will then give th enumber of colleagues needed 
+hb_col_total = HB_Prcss_Max_Units_Colleagues()
 # print(hb_col_total)
 
 
@@ -112,8 +123,17 @@ def HB_Putaway_Max_Units_Colleagues():
     return(putaway_work_hb)
 
 total_putaway_work_hb = HB_Putaway_Max_Units_Colleagues()
-# print(total_putaway_work_hb)
+print(f"The is the amount of colleagues needed to putaway beauty: {total_putaway_work_hb}")
 
+# required colleagues on the inbound dock - 9 pallets per day which equates to 333 units per hour? based on an average across a week excluding outlying figures, a conservative figure currently
 
+def Inbound_Dock_Colleagues_Required():
+    inbound_colleagues_hours_of_work = (daily_volumes_gm) / 333
+    inbound_colleagues_hours_of_work = inbound_colleagues_hours_of_work /7.5
+    if inbound_colleagues_hours_of_work == 0:
+        inbound_colleagues_hours_of_work = inbound_colleagues_hours_of_work +1 # Min manning not working, revisit
+    return(int(inbound_colleagues_hours_of_work))
+number_of_hours_inbound = Inbound_Dock_Colleagues_Required()
+print(f"This is the number of hours needed on inbound dock: {number_of_hours_inbound}")
 
 
